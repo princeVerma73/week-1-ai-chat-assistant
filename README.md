@@ -32,85 +32,54 @@ week-1-ai-chat-assistant/
 ---
 
 ## ⚙️ Installation
-
 ### Clone Repository
 ```bash
 git clone https://github.com/princeVerma73/week-1-ai-chat-assistant.git
-
 cd week-1-ai-chat-assistant
 ```
-
 ### Create Virtual Environment
-
 ```bash
 python -m venv venv
 ```
-
 ### Activate Environment
-
 Windows
-
 ```bash
 venv\Scripts\activate
 ```
-
 Linux / Mac
-
 ```bash
 source venv/bin/activate
 ```
-
 ### Install Dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
-
 ---
-
 ## 🔑 Environment Variables
-
 Create a `.env` file and add your Gemini API key.
-
 ```env
 GEMINI_API_KEY=YOUR_API_KEY
 ```
-
 ---
 
 ## ▶️ Run the Application
-
 ```bash
 streamlit run Frontend.py
 ```
-
 ---
 
-## 📸 Features Demonstrated
+## 📸 Features Improvements
 
-- AI Question Answering
-- Conversation Memory
-- Streamlit Chat Interface
-- Error Handling
-- Sidebar Information
-- Clear Chat Functionality
-
+- Support multiple LLMs
+- File upload
+- Voice input
+- Chat export
+- Better memory using Gemini chat sessions
 ---
-
-## 📈 Future Improvements
-
-- Chat Session API
-- Multiple LLM Support
-- Chat Export
-- Theme Customization
-- Deployment on Streamlit Cloud
-
 ---
 
 ## 👨‍💻 Developer
-
-**Prince Verma**
-
+**Prince Verma** 
 B.Tech CSE | IIIT Bhagalpur
 
 GitHub: https://github.com/princeVerma73

@@ -1,32 +1,24 @@
-# 🤖 AI Chat Assistant
+# 🤖AI Chat Assistant
 
-A simple AI Chat Assistant built using **Google Gemini API** and **Streamlit**. This project was developed as part of my **Week 1 Generative AI Internship**.
+An AI-powered chatbot built using Google Gemini API and Streamlit. This project was developed as part of my Week 1 Generative AI Internship.
 
 ---
 ## 🚀 Features
-
-- 💬 Interactive AI Chat Interface
+- 💬 AI Chat Interface
 - 🧠 Conversation Memory
 - ⚡ Google Gemini 2.5 Flash Integration
 - 🛡️ Error Handling
-- 🔐 Secure API Key Management using `.env`
-- 🗑️ Clear Chat Button
-- 📌 Sidebar with Project Information
 - 🎨 Clean and Responsive Streamlit UI
-
 ---
 
 ## 🛠️ Tech Stack
-
 - Python
-- Streamlit
+- Streamlit Frontend
+- Backend
 - Google Gemini API
-- python-dotenv
-
 ---
 
 ## 📂 Project Structure
-
 ```
 week-1-ai-chat-assistant/
 │

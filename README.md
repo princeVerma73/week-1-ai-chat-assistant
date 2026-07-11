@@ -34,11 +34,7 @@ week-1-ai-chat-assistant/
 - Google Gemini API integration
 - Conversation memory
 - Interactive Streamlit chat interface
-- Sidebar with project information
-- Clear Chat functionality
-- Loading spinner while generating responses
 - Error handling
-- Secure API key management using `.env`
 
 ---
 
@@ -133,18 +129,15 @@ Google Gemini API
    ▼
 AI Response
 ```
-
 ---
 
 # Conversation Flow
-
 1. User enters a prompt.
 2. Frontend stores chat history using `st.session_state`.
 3. Complete conversation is sent to the backend.
 4. Backend formats the conversation.
 5. Gemini generates a response.
 6. Response is displayed and stored in chat history.
-
 ---
 
 # Environment Variables
@@ -155,19 +148,13 @@ AI Response
 
 ---
 
-# Screenshots
+## Application Preview
 
-Add screenshots here after deployment.
-
-- Home Screen
-- Chat Interface
-- Sidebar
-- Conversation Example
+![Application Preview](screenshots/demo.png)
 
 ---
 
 # Future Improvements
-
 - Deploy on Streamlit Community Cloud
 - Gemini Chat Session API
 - Streaming Responses

@@ -1,74 +1,71 @@
+"""Streamlit interface for the AI Customer Support Assistant."""
+
 import streamlit as st
 from chat import generate_response
 
+
 st.set_page_config(
-    page_title="AI Chat Assistant",
-    page_icon="🤖",
+    page_title="Nova Support | AI Customer Support",
+    page_icon="🎧",
     layout="centered",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
-st.title("🤖 AI Chat Assistant")
 st.markdown(
     """
-    Welcome to your **Gemini-powered AI Chat Assistant**.
-    Ask any question and get intelligent responses powered by Google's Gemini model.
-    """
+    <style>
+        .block-container {max-width: 900px; padding-top: 2.5rem;}
+        [data-testid="stSidebar"] {border-right: 1px solid #e7eaf0;}
+        .support-hero {padding: 0.25rem 0 1.25rem;}
+        .support-hero h1 {margin-bottom: 0.25rem;}
+        .support-hero p {color: #566074; font-size: 1.05rem; margin: 0;}
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
 with st.sidebar:
-    st.title("📌 Project Info")
-    st.write("### About")
-    st.write(
-        """
-        **Model:** Gemini 2.5 Flash
-
-        **Backend:** Google GenAI SDK
-
-        **Frontend:** Streamlit
-
-        **Developer:** Prince Verma
-        """
-    )
-        # Clear Chat Button
-    if st.button("🗑️ Clear Chat"):
+    st.title("🎧 Nova Support")
+    st.caption("AI-powered customer assistance")
+    st.divider()
+    st.subheader("What I can help with")
+    st.markdown("- Orders and delivery\n- Refunds and payments\n- Accounts and general support")
+    st.divider()
+    st.caption("Powered by LangChain + Gemini 2.5 Flash")
+    if st.button("🗑️ Clear chat", use_container_width=True):
         st.session_state.messages = []
         st.rerun()
 
+st.markdown(
+    """
+    <div class="support-hero">
+      <h1>How can we help?</h1>
+      <p>Describe your issue and receive clear, professional support in seconds.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
+if not st.session_state.messages:
+    st.info("Try: “Where is my order?” or “How do I request a refund?”", icon="💡")
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages=[]
-
-for message in st.session_state.messages: # Display old messages
+for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-user_input=st.chat_input("Ask me anything...") # user input
+if user_input := st.chat_input("Type your customer support question..."):
+    user_message = {"role": "user","content": user_input}
+    st.session_state.messages.append(user_message)
 
-#Process User Input
-if user_input: 
-    # Display user message
     with st.chat_message("user"):
         st.markdown(user_input)
 
-    st.session_state.messages.append(  # Store user message
-        {
-            "role":"user",
-            "content":user_input
-        })
-
-    # Generate AI response
-    with st.spinner("🤖Thinking..."):
-        response = generate_response(st.session_state.messages)
-
-    # Store assistant response
-    st.session_state.messages.append(
-        {
-            "role":"assistant",
-            "content":response
-        })
-    
-    # Display AI response
     with st.chat_message("assistant"):
-        st.markdown(response)
+        with st.spinner("Finding the best way to help..."):
+            answer = generate_response(st.session_state.messages)
+        st.markdown(answer)
+
+    st.session_state.messages.append({"role": "assistant", "content": answer})

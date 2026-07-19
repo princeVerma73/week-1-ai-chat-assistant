@@ -1,182 +1,57 @@
-# 🤖 AI Chat Assistant
+# AI Customer Support Assistant
 
-A Streamlit-based AI Chat Assistant powered by Google's Gemini API. Users can interact with the chatbot through a clean web interface, maintain conversation history, and receive intelligent responses in real time.
+A professional customer-support chat app built with Streamlit, LangChain, and Google Gemini. It retains the familiar Week 1 chat experience while adding a dedicated support prompt for orders, delivery, refunds, payments, accounts, and escalation guidance.
 
----
+## Features
 
-# Tech Stack
+- Professional, safety-conscious customer support responses
+- Gemini via LangChain's `ChatGoogleGenerativeAI`
+- `PromptTemplate` for consistent support behavior
+- Conversation history held in Streamlit session state
+- Sidebar with capabilities and a clear-chat action
+- Loading spinner and friendly failure message
 
-- **Frontend:** Streamlit
-- **Backend:** Python
-- **LLM:** Google Gemini 2.5 Flash
-- **Environment Management:** python-dotenv
-
----
-
-# Project Structure
+## Project structure
 
 ```
-week-1-ai-chat-assistant/
-│
-├── Frontend.py          # Streamlit User Interface
-├── chat.py              # Backend (Gemini API Integration)
-├── .env.example         # Example environment variables
-├── requirements.txt     # Project dependencies
-├── .gitignore
-└── README.md
+Frontend.py       # Streamlit chat interface
+chat.py           # LangChain + Gemini backend
+.env.example      # API-key template
+requirements.txt  # Dependencies
+requirements-support.txt  # LangChain and Gemini packages
 ```
 
----
+## Setup
 
-# Features
+1. Create and activate a virtual environment.
 
-- AI-powered conversational chatbot
-- Google Gemini API integration
-- Conversation memory
-- Interactive Streamlit chat interface
-- Error handling
+   ```powershell
+   py -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
----
+2. Install dependencies.
 
-# Prerequisites
+   ```powershell
+   pip install -r requirements-support.txt
+   ```
 
-- Python 3.10+
-- Google Gemini API Key
-- pip
+3. Copy `.env.example` to `.env`, then add your Google AI Studio key.
 
----
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-# Installation
+4. Start the app.
 
-## 1. Clone Repository
+   ```powershell
+   streamlit run Frontend.py
+   ```
 
-```bash
-git clone https://github.com/princeVerma73/week-1-ai-chat-assistant.git
+Open `http://localhost:8501` in your browser.
 
-cd week-1-ai-chat-assistant
-```
+## Backend flow
 
----
+`Streamlit chat history → PromptTemplate → ChatGoogleGenerativeAI → professional support response`
 
-## 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### macOS/Linux
-
-```bash
-source venv/bin/activate
-```
-
----
-
-## 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## 4. Configure Environment Variables
-
-Create a `.env` file.
-
-```env
-GEMINI_API_KEY=YOUR_API_KEY
-```
-
-You can generate a Gemini API key from **Google AI Studio**.
-
----
-
-# Run the Application
-
-```bash
-streamlit run Frontend.py
-```
-
-Open:
-
-```
-http://localhost:8501
-```
-
----
-
-# Application Workflow
-
-```
-User
-   │
-   ▼
-Streamlit Frontend
-   │
-   ▼
-Backend (chat.py)
-   │
-   ▼
-Google Gemini API
-   │
-   ▼
-AI Response
-```
----
-
-# Conversation Flow
-1. User enters a prompt.
-2. Frontend stores chat history using `st.session_state`.
-3. Complete conversation is sent to the backend.
-4. Backend formats the conversation.
-5. Gemini generates a response.
-6. Response is displayed and stored in chat history.
----
-
-# Environment Variables
-
-| Variable | Description |
-|----------|-------------|
-| GEMINI_API_KEY | Google Gemini API Key |
-
----
-
-## Application Preview
-
-![Application Preview](screenshots/demo.png)
-
----
-
-# Future Improvements
-- Deploy on Streamlit Community Cloud
-- Gemini Chat Session API
-- Streaming Responses
-- File Upload Support
-- Voice Input
-- Multiple LLM Support
-
----
-
-# Developer
-
-**Prince Verma**
-
-B.Tech Computer Science & Engineering
-
-IIIT Bhagalpur
-
-GitHub:
-https://github.com/princeVerma73
-
----
-
-## License
-
-This project is developed for learning purposes as part of the **DStarix Generative AI Internship (Week 1)**.
+The assistant does not make claims about real order, payment, or account data. It requests the necessary non-sensitive details or guides the customer to human support when needed.
